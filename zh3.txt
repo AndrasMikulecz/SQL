@@ -1,0 +1,20 @@
+1.
+Filter 	{"languages 0": "English", "awards.wins": 2}
+Project {"title": 1, "writers": 1, "directors": 1, "year": 1}
+Sort 	{"year": -1}
+
+
+
+
+2.
+ db.users.find(
+... {"email": {$regex: ".*\\.com.*"}}, {_id: 0, name: 1, email: 1})
+
+3.
+db.movies.aggregate([
+... {$match:{year: {$gt: 1950}}}, {$group:{_id: "$rated", avgRuntime: $avg: "$runtime"}}}])
+
+4.
+MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+RETURN m.title AS Cím, p.name AS Név
+ORDER BY Cím DESC
